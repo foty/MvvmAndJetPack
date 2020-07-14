@@ -1,5 +1,7 @@
 package com.example.mvvmandjetpack.base.repository
 
+import com.example.mvvmandjetpack.network.ApiService
+import com.example.mvvmandjetpack.network.RetrofitManager
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -11,6 +13,10 @@ import io.reactivex.disposables.Disposable
 open class BaseRepository {
     private val disposable by lazy {
         CompositeDisposable()
+    }
+
+    protected val apiService: ApiService by lazy {
+        RetrofitManager.instance.createApi(apiService::class.java)
     }
 
     fun addDisposable(d: Disposable) {

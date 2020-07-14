@@ -9,7 +9,7 @@ import org.jetbrains.anko.toast
  * Date : 2020/7/13 14:38
  * Use by
  */
-abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<VM : BaseViewModel<*>> : AppCompatActivity() {
 
     private var exitTime: Long = 0
 
@@ -23,6 +23,9 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(getViewModel())
         initView()
         initData()
+
+        //统一处理livedata的回调
+        initLiveDtaObserver()
     }
 
     abstract fun getViewModel(): Class<VM>
@@ -32,6 +35,8 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
     abstract fun initView()
 
     abstract fun initData()
+
+    abstract fun initLiveDtaObserver()
 
     override fun onDestroy() {
         super.onDestroy()
