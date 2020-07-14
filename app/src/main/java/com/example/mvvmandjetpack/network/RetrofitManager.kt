@@ -26,6 +26,8 @@ class RetrofitManager private constructor() {
             .build()
     }
 
+    fun <T> createApi(clazz: Class<T>): T = retrofit.create(clazz)
+
     companion object {
         val instance by lazy {
             RetrofitManager()
