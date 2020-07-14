@@ -7,6 +7,11 @@ LiveData是一个数据持有类，它可以通过添加观察者被其他组件
 应用程序的生命周期，如在Activity中如果数据更新了但Activity已经是destroy状态，LivaeData就不会通知
 Activity(observer)。当然。LiveData的优点还有很多，如不会造成内存泄漏等。
 
+使用：  
+setValue(T)(主线程使用)和postValue(T)（子线程使用）两个方法来修改数据。LiveData并没有提供类似方法。    
+当调用MutableLiveData的setValue(T)或postValue(T)方法后，Observer的onChanged()方法将会被回调，从而实现更
+新UI的操作。
+
 ##### ViewModel 
 类旨在以注重生命周期的方式存储和管理界面相关的数据。ViewModel 类让数据可在发生屏幕旋转等配置更改后继续留存，
 为界面准备数据。  
@@ -22,3 +27,13 @@ ViewModel 存在的时间范围是从您首次请求ViewModel直到Activity完�
 
 anko-commons : JetBrains出品的一个工具包，常用的有toast，sp
 loadsir
+
+
+
+mvvm + retrofit + rx
+
+
+
+
+。。。。反射
+
