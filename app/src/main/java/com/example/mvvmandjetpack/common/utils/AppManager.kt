@@ -1,6 +1,9 @@
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import java.util.*
+import kotlin.system.exitProcess
 
 /**
  * Create by lxx
@@ -35,7 +38,10 @@ class AppManager {
     /**
      *
      */
-    fun exitApp() {
-        TODO()
+    fun exitApp(context :Context) {
+        finishAll()
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        activityManager.killBackgroundProcesses(context.packageName)
+        exitProcess(0)
     }
 }

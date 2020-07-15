@@ -1,6 +1,5 @@
 package com.example.mvvmandjetpack.base.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mvvmandjetpack.base.repository.BaseRepository
 import java.lang.reflect.ParameterizedType
@@ -17,8 +16,8 @@ open class BaseViewModel<T : BaseRepository> : ViewModel() {
         ((javaClass.genericSuperclass
                 as ParameterizedType).actualTypeArguments[0]
                 as Class<T>) // 获取对应Repository实例
-            .getDeclaredConstructor(MutableLiveData::class.java) //获取构造函数构造器，传入参数class
-            .newInstance() //获取实例
+            .getDeclaredConstructor() //获取构造函数构造器,这里不需要参数
+            .newInstance()
     }
 
     /**

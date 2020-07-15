@@ -1,6 +1,6 @@
 package com.example.mvvmandjetpack.network
 
-import com.example.mvvmandjetpack.MainBean
+import com.example.mvvmandjetpack.SystemTabNameBean
 import com.example.mvvmandjetpack.common.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -13,5 +13,5 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("/tree/json")
-    fun loadSystemTab(): Observable<BaseResponse<MainBean>>
+    fun loadSystemTab(): Observable<BaseResponse<List<SystemTabNameBean>>>
 }

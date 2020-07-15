@@ -16,7 +16,7 @@ open class BaseRepository {
     }
 
     protected val apiService: ApiService by lazy {
-        RetrofitManager.instance.createApi(apiService::class.java)
+        RetrofitManager.instance.createApi(ApiService::class.java)
     }
 
     fun addDisposable(d: Disposable) {

@@ -77,7 +77,6 @@ class RetrofitManager private constructor() {
     private fun saveCookie(cookie: String?) {
         cookie?.let {
             Log.e("", "cookie= $cookie")
-            TODO()
         }
     }
 }

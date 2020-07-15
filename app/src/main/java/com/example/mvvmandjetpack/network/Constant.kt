@@ -6,5 +6,5 @@ package com.example.mvvmandjetpack.network
  * Use by
  */
 object Constant{
-    const val BASE_URL = ""
+    const val BASE_URL = "https://www.wanandroid.com"
 }

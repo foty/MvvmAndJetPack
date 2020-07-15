@@ -7,8 +7,8 @@ import BaseActivity
  * Date : 2020/7/14 9:39
  * Use by
  */
-abstract class BaseLifeCycleActivity : BaseActivity() {
-    override fun initView() {
+abstract class BaseLifeCycleActivity  {
+    fun initView() {
 
     }
 }

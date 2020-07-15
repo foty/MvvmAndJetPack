@@ -44,14 +44,13 @@ abstract class BaseActivity<VM : BaseViewModel<*>> : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
 
         val cTime = System.currentTimeMillis()
         if (cTime - exitTime > 2000) {
             exitTime = cTime
             toast("再按一次退出")
         } else {
-            AppManager.instance.exitApp()
+            AppManager.instance.exitApp(this)
         }
     }
 
