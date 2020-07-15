@@ -1,4 +1,4 @@
-package com.example.mvvmandjetpack
+package com.example.mvvmandjetpack.other.main
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mvvmandjetpack.base.viewmodel.BaseViewModel

@@ -1,4 +1,4 @@
-package com.example.mvvmandjetpack
+package com.example.mvvmandjetpack.other.main
 
 /**
  * Create by lxx

@@ -1,10 +1,10 @@
-package com.example.mvvmandjetpack
+package com.example.mvvmandjetpack.other.main
 
 import BaseActivity
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import com.example.mvvmandjetpack.R
+import com.example.mvvmandjetpack.common.startActivity
 
 class MainActivity : BaseActivity<MainViewModel>() {
 
@@ -20,7 +20,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
     override fun initData() {
         //发起请求
-        viewModel.getMainData()
+//        viewModel.getMainData()
 
     }
 
@@ -29,6 +29,8 @@ class MainActivity : BaseActivity<MainViewModel>() {
           Log.d("lxx", "结束啦啦啦啦啦啦")
             data.data
             data.errorMsg
+
+            startActivity<MainActivity>(this)
         })
     }
 

@@ -1,6 +1,6 @@
 package com.example.mvvmandjetpack.network
 
-import com.example.mvvmandjetpack.SystemTabNameBean
+import com.example.mvvmandjetpack.other.main.SystemTabNameBean
 import com.example.mvvmandjetpack.common.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.GET

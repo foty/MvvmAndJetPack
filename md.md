@@ -23,17 +23,13 @@ ViewModel 存在的时间范围是从您首次请求ViewModel直到Activity完�
 
 
 
-依赖库:
+实现流程:  
+mvvmbase基类(viewModel,repository,livedata)  
+retrofit + ok  
+s
 
-anko-commons : JetBrains出品的一个工具包，常用的有toast，sp
-loadsir
-
-
-
-mvvm + retrofit + rx
-
-
-
-
-。。。。反射
-
+问题： 
+livedata原理(怎么跟activity/fragment生命周期关联上的)?   
+base用反射获取的repository原理?  
+java下的retrofit与kotlin的retrofit区别?  
+扩展函数、内联函数使用时机?  
