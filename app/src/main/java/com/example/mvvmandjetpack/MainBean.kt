@@ -5,4 +5,7 @@ package com.example.mvvmandjetpack
  * Date : 2020/7/14 14:18
  * Use by
  */
-class MainBean(var s: String)
+data class MainBean(
+    var name: String,
+    var id: Int
+)

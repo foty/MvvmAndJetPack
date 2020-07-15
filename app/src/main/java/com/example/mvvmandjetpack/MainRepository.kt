@@ -14,10 +14,10 @@ import io.reactivex.schedulers.Schedulers
  */
 class MainRepository : BaseRepository() {
 
-    fun test(mainBeans: MutableLiveData<BaseResponse<MainBean>>) {
+    fun test(mainBeans: MutableLiveData<BaseResponse<List<SystemTabNameBean>>>) {
         apiService.loadSystemTab()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(BaseObserver(mainBeans))
+            .subscribe(BaseObserver(mainBeans, this))
     }
 }

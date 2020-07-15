@@ -11,7 +11,7 @@ import com.example.mvvmandjetpack.common.BaseResponse
  */
 class MainViewModel : BaseViewModel<MainRepository>() {
 
-    val mainBean: MutableLiveData<BaseResponse<MainBean>> = MutableLiveData()
+    val mainBean: MutableLiveData<BaseResponse<List<SystemTabNameBean>>> = MutableLiveData()
 
     fun getMainData(){
         repository.test(mainBean)

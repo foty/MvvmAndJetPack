@@ -3,6 +3,7 @@ package com.example.mvvmandjetpack
 import BaseActivity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 
 class MainActivity : BaseActivity<MainViewModel>() {
@@ -25,6 +26,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
     override fun initLiveDtaObserver() {
         viewModel.mainBean.observe(this, Observer { data ->
+          Log.d("lxx", "结束啦啦啦啦啦啦")
             data.data
             data.errorMsg
         })
