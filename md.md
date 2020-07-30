@@ -26,7 +26,7 @@ ViewModel 存在的时间范围是从您首次请求ViewModel直到Activity完�
 实现流程:  
 mvvmbase基类(viewModel,repository,livedata)  
 retrofit + ok  
-s
+
 
 问题： 
 livedata原理(怎么跟activity/fragment生命周期关联上的)?   

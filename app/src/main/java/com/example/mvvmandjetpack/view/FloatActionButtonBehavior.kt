@@ -11,6 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  * Create by lxx
  * Date : 2020/7/20 11:42
  * Use by 自定义的FloatingActionButton behavior。
+ * 主要做2件事情: 1：判断垂直方向需要触发回调；2：下滑按钮隐藏，上滑按钮显示。
  */
 class FloatActionButtonBehavior(context: Context, attrs: AttributeSet) :
     FloatingActionButton.Behavior() {
