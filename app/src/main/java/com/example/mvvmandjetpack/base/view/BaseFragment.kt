@@ -25,6 +25,8 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initView()
         initData()
+
+        initLiveDtaObserver()
     }
 
     abstract fun getLayoutId(): Int
@@ -32,6 +34,8 @@ abstract class BaseFragment : Fragment() {
     abstract fun initView()
 
     abstract fun initData()
+
+    abstract fun initLiveDtaObserver()
 
     override fun onDestroyView() {
         super.onDestroyView()

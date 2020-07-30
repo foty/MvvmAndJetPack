@@ -5,9 +5,9 @@ import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmandjetpack.R
 import com.example.mvvmandjetpack.common.startActivity
+import com.example.mvvmandjetpack.other.home.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.toast
@@ -21,16 +21,6 @@ class MainActivity : BaseActivity<MainViewModel>() {
     }
 
     override fun initView() {
-
-        test_rv.layoutManager = LinearLayoutManager(this)
-
-        var list = mutableListOf<String>()
-        for (i in 0..80) {
-            list.add("第${i}个item~~~~~~~~~")
-        }
-        test_rv.adapter = MainAdapter(R.layout.item_text, list)
-
-
         initToolBar()
         initDrawerLayout()
 
@@ -40,6 +30,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
     override fun initData() {
         //发起请求
 //        viewModel.getMainData()
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.cl_content, HomeFragment())
+        transaction.commit()
 
     }
 

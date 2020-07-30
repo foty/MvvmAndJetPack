@@ -19,6 +19,16 @@
 2.app:layout_anchor 其父布局需要是 CoordinatorLayout，否则没有效果。参考的的锚点，不能是父布局，否则会报错。
    
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 部分第三方轮子从github上下载需要先添加git发布支持(maven { url "https://jitpack.io" })   
 
 
