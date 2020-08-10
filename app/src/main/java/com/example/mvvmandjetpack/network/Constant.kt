@@ -7,4 +7,11 @@ package com.example.mvvmandjetpack.network
  */
 object Constant{
     const val BASE_URL = "https://www.wanandroid.com"
+
+
+    const val HOME = 0
+    const val SYSTEM = 1
+    const val PUBLIC = 2
+    const val NAVIGATION = 3
+    const val PROJECT = 4
 }

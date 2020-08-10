@@ -19,7 +19,15 @@
 2.app:layout_anchor 其父布局需要是 CoordinatorLayout，否则没有效果。参考的的锚点，不能是父布局，否则会报错。
    
  
- 
+
+DraLayout、toolbar创建menu选项菜单：通过重写onCreateOptionsMenu(menu: Menu?)方法来实现：
+```kotlin
+//显示menu图片
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu) // R.menu.search_menu为xml布局
+        return super.onCreateOptionsMenu(menu)
+    }
+``` 
  
  
  

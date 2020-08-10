@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jetpackdemo.base.view.BaseFragment
 import com.example.mvvmandjetpack.R
@@ -20,23 +21,18 @@ import org.jetbrains.anko.toast
  * Date : 2020/7/30 14:00
  * Use by
  */
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment<HomeViewModel>() {
 
     private lateinit var banner: Banner
     private lateinit var adapter: HomeAdapter
 
-    private val imgUrls = arrayListOf(
-        "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4" +
-                "000_4000&sec=1596093837&di=3b65f40e17409f3c75177919190998f7&src=http://a2.att.hudong.com/86/10/01" +
-                "300000184180121920108394217.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596103921777&di=b9e094080b2efcd1215" +
-                "34293a8adf03f&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F62%2F02%2F01300542526392139955025309984.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596103921778&di=57ae8407e3b53ccea80de865" +
-                "14a9853c&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F05%2F00%2F01300000194285122188000535877.jpg"
-    )
+    private val imgUrls by lazy {
+        arrayListOf<String>()
+    }
 
-    private val tittles = arrayListOf("花朵","小猫","小狗")
-
+    private val tittles by lazy {
+        arrayListOf<String>()
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
@@ -49,6 +45,10 @@ class HomeFragment : BaseFragment() {
 
     }
 
+    override fun getViewModel(): Class<HomeViewModel> {
+        return HomeViewModel::class.java
+    }
+
     override fun initData() {
 
         var list = mutableListOf<String>()
@@ -57,9 +57,26 @@ class HomeFragment : BaseFragment() {
         }
         adapter.setNewData(list)
 
+        viewModel.getBanner()
+
     }
 
     override fun initLiveDtaObserver() {
+        viewModel.mBannerData.observe(this, Observer {
+
+            if (it.errorCode != 0) {
+                return@Observer
+            }
+            tittles.clear()
+            imgUrls.clear()
+            for (item in it.data) {
+                tittles.add(item.desc)
+                imgUrls.add(item.imagePath)
+            }
+            banner.setBannerTitles(tittles)
+            banner.setImages(imgUrls)
+            banner.start()
+        })
     }
 
     private fun initRecyclerView() {
@@ -68,7 +85,7 @@ class HomeFragment : BaseFragment() {
 
         initBanner(headView)
 
-        adapter = HomeAdapter(R.layout.item_text)
+        adapter = HomeAdapter(R.layout.item_home_list)
         adapter.setHeaderView(headView)
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -86,10 +103,6 @@ class HomeFragment : BaseFragment() {
                 context?.toast("$position")
             }
         }
-
-        banner.setBannerTitles(tittles)
-        banner.setImages(imgUrls)
-        banner.start()
     }
 
     private fun initRefreshLayout() {
@@ -99,7 +112,6 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun refreshData() {
-
 
         Handler().postDelayed({
             context?.toast("刷新完成")

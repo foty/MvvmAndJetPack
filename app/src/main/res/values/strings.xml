@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MvvmAndJetPack</string>
+    <string name="app_name">开发神器</string>
 
     <string name="navigation_home">首页</string>
     <string name="search_input_tips">请输入搜索内容</string>

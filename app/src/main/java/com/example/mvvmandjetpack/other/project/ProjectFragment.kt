@@ -1,13 +1,18 @@
 package com.example.mvvmandjetpack.other.project
 
 import com.example.jetpackdemo.base.view.BaseFragment
+import com.example.mvvmandjetpack.other.home.HomeViewModel
 
 /**
  * Create by lxx
  * Date : 2020/7/30 17:00
  * Use by
  */
-class ProjectFragment:BaseFragment() {
+class ProjectFragment : BaseFragment<HomeViewModel>() {
+    override fun getViewModel(): Class<HomeViewModel> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun getLayoutId(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
