@@ -132,7 +132,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
                 transaction.show(curFragment!!)
             } else {
                 curFragment = getFragment(index)
-                transaction.replace(R.id.cl_content, HomeFragment(), index.toString())
+                transaction.replace(R.id.cl_content, curFragment!!, index.toString())
             }
         }
 
@@ -140,7 +140,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         if (index == lastIndex) {
             if (curFragment == null) {
                 curFragment = getFragment(index)
-                transaction.replace(R.id.cl_content, HomeFragment(), index.toString())
+                transaction.replace(R.id.cl_content, curFragment!!, index.toString())
             }
         }
         transaction.commit()

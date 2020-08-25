@@ -1,6 +1,7 @@
 package com.example.mvvmandjetpack.other.project
 
 import com.example.jetpackdemo.base.view.BaseFragment
+import com.example.mvvmandjetpack.R
 import com.example.mvvmandjetpack.other.home.HomeViewModel
 
 /**
@@ -8,24 +9,21 @@ import com.example.mvvmandjetpack.other.home.HomeViewModel
  * Date : 2020/7/30 17:00
  * Use by
  */
-class ProjectFragment : BaseFragment<HomeViewModel>() {
-    override fun getViewModel(): Class<HomeViewModel> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class ProjectFragment : BaseFragment<ProjectViewModel>() {
+    override fun getViewModel(): Class<ProjectViewModel> {
+    return ProjectViewModel::class.java
     }
 
     override fun getLayoutId(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return R.layout.fragment_project
     }
 
     override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun initData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun initLiveDtaObserver() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
