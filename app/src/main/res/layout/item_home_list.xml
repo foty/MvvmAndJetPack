@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:orientation="vertical"
-    app:cardBackgroundColor="#42EB50"
+    app:cardBackgroundColor="#ffffff"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
     app:strokeColor="#FCB711"
@@ -25,6 +25,37 @@
             android:text="作者： JJKK"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTopTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/title_lable_red"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:text="置顶"
+            android:textColor="#F82323"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/tvAuthor"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/title_lable_red"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="新"
+            android:textColor="#F82323"
+            android:textSize="10sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/tvTopTag"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -49,6 +80,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
 
         <TextView
+            android:id="@+id/tvClassify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -60,6 +92,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTittle" />
 
         <ImageView
+            android:id="@+id/ivCollect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

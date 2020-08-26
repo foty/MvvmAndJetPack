@@ -20,4 +20,19 @@ class HomeRepository : BaseRepository() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(BaseObserver(liveData, this))
     }
+
+
+    fun getTopArticle(liveData: MutableLiveData<BaseResponse<List<HomeOfTopArticleBean>>>) {
+        apiService.loadTopArticle()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(BaseObserver(liveData, this))
+    }
+
+    fun getHomeArticles(page: Int, liveData: MutableLiveData<BaseResponse<HomeArticleBean>>) {
+        apiService.loadHomeArticle(page)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(BaseObserver(liveData, this))
+    }
 }

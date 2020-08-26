@@ -1,7 +1,6 @@
 package com.example.mvvmandjetpack.other.home
 
 import android.graphics.Color
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.Observer
@@ -25,6 +24,7 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
 
     private lateinit var banner: Banner
     private lateinit var adapter: HomeAdapter
+    private var pageNum = 0
 
     private val imgUrls by lazy {
         arrayListOf<String>()
@@ -39,10 +39,8 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
     }
 
     override fun initView() {
-
         initRefreshLayout()
         initRecyclerView()
-
     }
 
     override fun getViewModel(): Class<HomeViewModel> {
@@ -51,22 +49,15 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
 
     override fun initData() {
 
-        var list = mutableListOf<String>()
-        for (i in 0..80) {
-            list.add("第${i}个item~~~~~~~~~")
-        }
-        adapter.setNewData(list)
-
+        viewModel.getTopArticle()
         viewModel.getBanner()
-
+        viewModel.getHomeArticle(pageNum)
     }
 
     override fun initLiveDtaObserver() {
         viewModel.mBannerData.observe(this, Observer {
+            if (it.errorCode != 0) return@Observer
 
-            if (it.errorCode != 0) {
-                return@Observer
-            }
             tittles.clear()
             imgUrls.clear()
             for (item in it.data) {
@@ -77,12 +68,34 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
             banner.setImages(imgUrls)
             banner.start()
         })
+
+        viewModel.topArticleBean.observe(this, Observer {
+            if (it.errorCode == 0) { //表示成功
+                for (item in it.data){
+                    item.top = true
+                }
+                adapter.setNewData(it.data)
+            }
+        })
+
+        viewModel.homeArticleBean.observe(this, Observer {
+
+            adapter.addData(it.data.datas)
+            // 加载完毕
+            if (it.data.datas.isEmpty()) {
+                adapter.loadMoreEnd()
+            }
+            adapter.loadMoreComplete()
+            if (pageNum == 0){
+                refreshLayout.isRefreshing = false
+            }
+        })
+
     }
 
     private fun initRecyclerView() {
 
         val headView = LayoutInflater.from(activity).inflate(R.layout.layout_home_headview, null)
-
         initBanner(headView)
 
         adapter = HomeAdapter(R.layout.item_home_list)
@@ -91,6 +104,29 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
 
+        adapter.setEnableLoadMore(true)
+        adapter.setOnLoadMoreListener({
+            loadMoreData()
+        }, recyclerView)
+
+    }
+
+    private fun initRefreshLayout() {
+        refreshLayout.setProgressBackgroundColorSchemeColor(Color.parseColor("#008577"))
+        refreshLayout.setColorSchemeColors(Color.WHITE)
+        refreshLayout.setOnRefreshListener { refreshData() }
+    }
+
+    private fun refreshData() {
+        pageNum = 0
+        viewModel.getTopArticle()
+        viewModel.getBanner()
+        viewModel.getHomeArticle(pageNum)
+
+    }
+
+    private fun loadMoreData() {
+        viewModel.getHomeArticle(++pageNum)
     }
 
     private fun initBanner(headView: View) {
@@ -105,19 +141,5 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
         }
     }
 
-    private fun initRefreshLayout() {
-        refreshLayout.setProgressBackgroundColorSchemeColor(Color.parseColor("#008577"))
-        refreshLayout.setColorSchemeColors(Color.WHITE)
-        refreshLayout.setOnRefreshListener { refreshData() }
-    }
 
-    private fun refreshData() {
-
-        Handler().postDelayed({
-            context?.toast("刷新完成")
-            refreshLayout.isRefreshing = false
-
-        }, 2000)
-
-    }
 }

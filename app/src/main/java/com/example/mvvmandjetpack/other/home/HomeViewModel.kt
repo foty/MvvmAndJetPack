@@ -12,9 +12,20 @@ import com.example.mvvmandjetpack.common.BaseResponse
 class HomeViewModel : BaseViewModel<HomeRepository>() {
 
     val mBannerData: MutableLiveData<BaseResponse<List<BannerBean>>> = MutableLiveData()
+    val topArticleBean: MutableLiveData<BaseResponse<List<HomeOfTopArticleBean>>> =
+        MutableLiveData()
+    val homeArticleBean: MutableLiveData<BaseResponse<HomeArticleBean>> = MutableLiveData()
 
 
-    fun getBanner(){
+    fun getBanner() {
         repository.getBanner(mBannerData)
+    }
+
+    fun getTopArticle() {
+        repository.getTopArticle(topArticleBean)
+    }
+
+    fun getHomeArticle(page: Int) {
+        repository.getHomeArticles(page, homeArticleBean)
     }
 }
